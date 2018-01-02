@@ -74,7 +74,7 @@ public class loginFormController implements Initializable {
                 break;
         }
     }
-    
+    @FXML
     public void inscription(ActionEvent actionEvent)throws IOException{
                 Parent root = FXMLLoader.load(getClass().getResource("inscription.fxml"));
                 Scene scene= new Scene(root);
