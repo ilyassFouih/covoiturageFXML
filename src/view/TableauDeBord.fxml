@@ -1,11 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TableauDeBordController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.TableauDeBordController">
+   <children>
+      <AnchorPane layoutX="-12.0" layoutY="-12.0" prefHeight="562.0" prefWidth="281.0" style="-fx-background-color: #616161;">
+         <children>
+            <Label layoutX="42.0" layoutY="23.0" text="votre application " textFill="#26a69a">
+               <font>
+                  <Font name="Britannic Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="48.0" text="de covoiturage" textFill="#26a69a">
+               <font>
+                  <Font name="Britannic Bold" size="25.0" />
+               </font>
+            </Label>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="278.0" mnemonicParsing="false" onAction="#chercherTrajet" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="chercher un trajet " textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="334.0" onAction="#proposerTrajet" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="proposer un trajet " textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="TOP_CENTER" buttonType="RAISED" layoutX="31.0" layoutY="395.0" onAction="#notification" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="notifications" textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="449.0" onAction="#tableauDeBord" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="tableau de bord " textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="31.0" layoutY="156.0" mnemonicParsing="false" onAction="#home" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="home " textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="218.0" onAction="#modifierProfile" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="voir profil" textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="268.0" layoutY="-12.0" prefHeight="76.0" prefWidth="478.0" style="-fx-background-color: #CFD8DC;">
+         <children>
+            <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="24.0" onAction="#deconexion" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #9E9E9E; -fx-border-color: #FF5252;" text="deconexion" textFill="#d32f2f">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="14.0" layoutY="30.0" text="tableau de bord" textFill="#424242" underline="true">
+               <font>
+                  <Font name="Bell MT Bold" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow height="89.21" radius="28.534999999999997" width="26.93" />
+               </effect>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

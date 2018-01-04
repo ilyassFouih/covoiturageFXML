@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  *
  * @author IlyassElfouih
  */
-public class ViewLuncher extends Application {
+public class ViewLuncherLoging extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

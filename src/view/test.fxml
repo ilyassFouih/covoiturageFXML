@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="647.0" prefWidth="610.0" style="-fx-background-color: #00838F;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EdditerProfilController">
-   <children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.TestController">
+    <children>
       <AnchorPane layoutX="108.0" layoutY="39.0" prefHeight="569.0" prefWidth="393.0" style="-fx-background-color: #CFD8DC;">
          <children>
             <JFXTextField fx:id="nom" labelFloat="true" layoutX="103.0" layoutY="89.0" prefHeight="31.0" prefWidth="199.0" promptText="Modifier votre nom:">
@@ -62,7 +62,7 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <JFXButton buttonType="RAISED" layoutX="105.0" layoutY="522.0" onAction="#Modifier" prefHeight="25.0" prefWidth="199.0" ripplerFill="#cfd8dc" style="-fx-background-color: #00838F;" text="Modifier" textFill="#cfd8dc" />
+            <JFXButton buttonType="RAISED" layoutX="105.0" layoutY="522.0" onAction="#modifier" prefHeight="25.0" prefWidth="199.0" ripplerFill="#cfd8dc" style="-fx-background-color: #00838F;" text="Modifier" textFill="#cfd8dc" />
             <Label layoutX="116.0" layoutY="14.0" text="Modifier profil:">
                <font>
                   <Font size="23.0" />

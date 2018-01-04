@@ -5,13 +5,15 @@
  */
 package view;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +24,7 @@ import javafx.stage.Stage;
  *
  * @author IlyassElfouih
  */
-public class NotificationController implements Initializable {
+public class ChoixVilleCircuitController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -31,15 +33,31 @@ public class NotificationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-     @FXML
+    @FXML
+    private JFXComboBox<?> villeDepCircuit;
+
+    @FXML
+    private JFXComboBox<?> villeArrCircuit;
+
+    @FXML
+    private JFXTextField prixVilleCircuit;
+
+    @FXML
+    void ajouterAmonTrajet(ActionEvent event) {
+
+    }
+      @FXML
+    void valider(ActionEvent event) {
+
+    }
+
+    @FXML
     void chercherTrajet(ActionEvent actionEvent) throws IOException {
          Parent root = FXMLLoader.load(getClass().getResource("ChercherTrajet.fxml"));
         Scene scene= new Scene(root);
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
-        
     }
 
     @FXML
@@ -87,15 +105,40 @@ public class NotificationController implements Initializable {
         window.show();
     }
 
-   
+    
 
     @FXML
     void tableauDeBord(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("TableauDeBord.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"));
         Scene scene= new Scene(root);
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
+
+    public JFXComboBox<?> getVilleDepCircuit() {
+        return villeDepCircuit;
+    }
+
+    public void setVilleDepCircuit(JFXComboBox<?> villeDepCircuit) {
+        this.villeDepCircuit = villeDepCircuit;
+    }
+
+    public JFXComboBox<?> getVilleArrCircuit() {
+        return villeArrCircuit;
+    }
+
+    public void setVilleArrCircuit(JFXComboBox<?> villeArrCircuit) {
+        this.villeArrCircuit = villeArrCircuit;
+    }
+
+    public JFXTextField getPrixVilleCircuit() {
+        return prixVilleCircuit;
+    }
+
+    public void setPrixVilleCircuit(JFXTextField prixVilleCircuit) {
+        this.prixVilleCircuit = prixVilleCircuit;
+    }
+
     
 }

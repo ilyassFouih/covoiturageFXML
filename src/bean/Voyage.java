@@ -100,6 +100,14 @@ public class Voyage implements Serializable {
         this.villeArriver = villeArriver;
     }
 
+    public List<CircuitVoyage> getCircuitVoyages() {
+        return circuitVoyages;
+    }
+
+    public void setCircuitVoyages(List<CircuitVoyage> circuitVoyages) {
+        this.circuitVoyages = circuitVoyages;
+    }
+
   
 
     

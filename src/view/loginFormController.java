@@ -19,8 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -64,8 +62,10 @@ public class loginFormController implements Initializable {
                 break;
             default:
                 JOptionPane.showMessageDialog(null, res, "connextion avec succe ", res);
+//                ---------ouvrire session---------------------------
                 Personne utilisateur= personneService.find(emailScene.getText());
                 Session.updateAttribute(utilisateur, "utilisateur connecter ");
+//                ------------passer à home ---------------------------
                 Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
                 Scene scene= new Scene(root);
                 Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
@@ -76,7 +76,7 @@ public class loginFormController implements Initializable {
     }
     @FXML
     public void inscription(ActionEvent actionEvent)throws IOException{
-                Parent root = FXMLLoader.load(getClass().getResource("inscription.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("InscriptionUtilisateur.fxml"));
                 Scene scene= new Scene(root);
                 Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
                 window.setScene(scene);

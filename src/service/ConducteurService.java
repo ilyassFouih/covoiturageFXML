@@ -5,11 +5,13 @@
  */
 package service;
 
+import bean.CircuitVoyage;
 import bean.Conducteur;
 import bean.Personne;
 import bean.Ville;
 import bean.Voyage;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -21,14 +23,13 @@ public class ConducteurService extends AbstractFacade<Conducteur>{
         super(Conducteur.class);
     }
     
-    public int proposerTrajet(String email,Ville villeDep,Ville villeDarr,Date dateVoyage,int nbrPlaceMax,double prix,String typeVoiture){
-        Voyage voyage = new Voyage( villeDep, villeDarr, dateVoyage);
+    public int proposerTrajet(String email,Voyage voyage,Conducteur conducteur){
+       
         VoyageService voyageService = new VoyageService();
         voyageService.create(voyage);
         
         Personne personne = new Personne(email);
         
-        Conducteur conducteur =new Conducteur(typeVoiture, nbrPlaceMax, prix);
         conducteur.setVoyage(voyage);
         conducteur.setPersonne(personne);
         

@@ -5,7 +5,6 @@
  */
 package view;
 
-import bean.Personne;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,87 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import util.Session;
-import static view.ViewLauncher.forward;
 
 /**
  * FXML Controller class
  *
  * @author IlyassElfouih
  */
-public class HomeController implements Initializable {
-    
-    @FXML
-    private Label nomPrenom ;
-   
-    @FXML
-    public void chercherTrajet(ActionEvent actionEvent) throws IOException{
-        
-        Parent root = FXMLLoader.load(getClass().getResource("ChercherTrajet.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-        
-        
-    }
-    @FXML
-    public void deconexione(ActionEvent actionEvent) throws IOException{
-        
-        Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-        
-        
-    }
-    @FXML
-    public void modifierProfile(ActionEvent actionEvent) throws IOException{
-        
-        Parent root = FXMLLoader.load(getClass().getResource("modifierProfile.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-        
-        
-    }
-    @FXML
-    public void proposerTrajet(ActionEvent actionEvent) throws IOException{
-        
-        Parent root = FXMLLoader.load(getClass().getResource("ProposerTrajet.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-        
-        
-    }
-    @FXML
-    public void notification(ActionEvent actionEvent) throws IOException{
-        
-        Parent root = FXMLLoader.load(getClass().getResource("Notification.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-        
-        
-    }
-    @FXML
-    public void tableauDeBord(ActionEvent actionEvent) throws IOException{
-        
-        Parent root = FXMLLoader.load(getClass().getResource("TableauDeBord.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-        
-        
-    }
+public class ChercherTrajetController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -104,17 +30,72 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        nomPrenom.setText( ((Personne) Session.getAttribut("utilisateur connecter ")).getNom() + " "+((Personne) Session.getAttribut("utilisateur connecter ")).getPrenom() 
-                );
     }    
-
-    public Label getNomPrenom() {
-        return nomPrenom;
+    
+     @FXML
+    void chercherTrajet(ActionEvent actionEvent) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("ChercherTrajet.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+        
     }
 
-    public void setNomPrenom(Label nomPrenom) {
-        this.nomPrenom = nomPrenom;
+    @FXML
+    void deconexion(ActionEvent actionEvent) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    void home(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    void modifierProfile(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ModifierProfile.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    void notification(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Notification.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    void proposerTrajet(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ProposerTrajet.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+   
+
+    @FXML
+    void tableauDeBord(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("TableauDeBord.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
     
 }

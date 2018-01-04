@@ -37,18 +37,28 @@ public class PersonneService extends AbstractFacade<Personne> {
         }
     }
 
-    public int modifierProfil(Personne personne, String ancienneEmail) {
+    public int modifierProfil(Personne personne, String email) {
         if (personne == null) {
             return -1;
         } else {
-            Personne anciennePersonne = find(ancienneEmail);
+            Personne anciennePersonne = find(email);
             if (anciennePersonne == null) {
                 return -2;
             } else {
+                if(personne.getPrenom()!=null)
                 anciennePersonne.setPrenom(personne.getPrenom());
+                if(personne.getNom()!=null)
                 anciennePersonne.setNom(personne.getNom());
+                if(personne.getTel()!=null)
                 anciennePersonne.setTel(personne.getTel());
+                if(personne.getPassword()!=null)
                 anciennePersonne.setPassword(personne.getPassword());
+                if(personne.getCin()!=null)
+                anciennePersonne.setCin(personne.getCin());
+                
+                anciennePersonne.setAge(personne.getAge());
+              
+                
                 edit(anciennePersonne);
                 return 1;
             }

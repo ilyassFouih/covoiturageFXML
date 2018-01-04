@@ -7,9 +7,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.NotificationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.ChercherTrajetController">
    <children>
-      <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="562.0" prefWidth="281.0" style="-fx-background-color: #616161;">
+      <AnchorPane layoutX="-14.0" prefHeight="562.0" prefWidth="281.0" style="-fx-background-color: #616161;">
          <children>
             <Label layoutX="42.0" layoutY="23.0" text="votre application " textFill="#26a69a">
                <font>
@@ -53,14 +53,14 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="278.0" layoutY="-2.0" prefHeight="76.0" prefWidth="478.0" style="-fx-background-color: #CFD8DC;">
+      <AnchorPane layoutX="266.0" prefHeight="76.0" prefWidth="478.0" style="-fx-background-color: #CFD8DC;">
          <children>
             <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="24.0" onAction="#deconexion" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #9E9E9E; -fx-border-color: #FF5252;" text="deconexion" textFill="#d32f2f">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </JFXButton>
-            <Label layoutX="14.0" layoutY="30.0" text="notification" textFill="#424242" underline="true">
+            <Label layoutX="14.0" layoutY="30.0" text="Chercher un trajet " textFill="#424242" underline="true">
                <font>
                   <Font name="Bell MT Bold" size="24.0" />
                </font>

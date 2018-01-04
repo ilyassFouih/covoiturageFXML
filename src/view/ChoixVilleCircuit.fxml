@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -10,9 +9,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProposerTrajetController">
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-radius: 20px;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.ChoixVilleCircuitController">
    <children>
-      <AnchorPane layoutX="-1.0" prefHeight="562.0" prefWidth="281.0" style="-fx-background-color: #616161;">
+      <AnchorPane prefHeight="562.0" prefWidth="281.0" style="-fx-background-color: #616161;">
          <children>
             <Label layoutX="42.0" layoutY="23.0" text="votre application " textFill="#26a69a">
                <font>
@@ -56,14 +56,15 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="279.0" prefHeight="76.0" prefWidth="478.0" style="-fx-background-color: #CFD8DC;">
+      <AnchorPane layoutX="280.0" prefHeight="76.0" prefWidth="478.0" style="-fx-background-color: #CFD8DC;">
          <children>
             <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="24.0" onAction="#deconexion" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #9E9E9E; -fx-border-color: #FF5252;" text="deconexion" textFill="#d32f2f">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
-               
-                  
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <Label layoutX="14.0" layoutY="30.0" text="proposer un trajet" textFill="#424242" underline="true">
                <font>
@@ -75,48 +76,23 @@
             </Label>
          </children>
       </AnchorPane>
-      <JFXComboBox fx:id="villeDepart" focusColor="#00838f" layoutX="513.0" layoutY="144.0" prefHeight="25.0" prefWidth="163.0" />
-      <Label layoutX="311.0" layoutY="144.0" text="ville de depart :">
+      <Label layoutX="290.0" layoutY="89.0" text="choisir les villes etape :" textFill="#424242">
          <font>
-            <Font size="16.0" />
+            <Font name="Bell MT Bold" size="24.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="villeArriver" focusColor="#00838f" layoutX="513.0" layoutY="190.0" prefHeight="25.0" prefWidth="163.0" />
-      <Label layoutX="311.0" layoutY="190.0" text="ville d'arriver :">
+      <JFXComboBox fx:id="villeDepCircuit" focusColor="#00838f" labelFloat="true" layoutX="303.0" layoutY="146.0" prefHeight="25.0" prefWidth="109.0" promptText="ville depart" />
+      <JFXComboBox fx:id="villeArrCircuit" focusColor="#00838f" labelFloat="true" layoutX="478.0" layoutY="146.0" prefHeight="25.0" prefWidth="98.0" promptText="ville arriver" />
+      <JFXTextField fx:id="prixVilleCircuit" focusColor="#00838f" labelFloat="true" layoutX="623.0" layoutY="146.0" prefHeight="25.0" prefWidth="109.0" promptText="prix " />
+      <JFXButton buttonType="RAISED" layoutX="302.0" layoutY="195.0" onAction="#ajouterAmonTrajet" prefHeight="31.0" prefWidth="434.0" style="-fx-border-color: #00838F;" text="ajouter à mon trajet ">
          <font>
-            <Font size="16.0" />
-         </font>
-        
-      </Label>
-     
-      <JFXDatePicker fx:id="dateDepart" layoutX="517.0" layoutY="229.0" prefHeight="28.0" prefWidth="163.0" />
-      <Label layoutX="311.0" layoutY="243.0" text="date de depart  :">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="311.0" layoutY="295.0" text="nombre de place maximum :">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="nbrPlaceMax" focusColor="#00838f" layoutX="527.0" layoutY="295.0" prefHeight="25.0" prefWidth="156.0" />
-      <Label layoutX="308.0" layoutY="343.0" text="prix pour ce trajet :">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="prix" focusColor="#00838f" layoutX="527.0" layoutY="343.0" prefHeight="25.0" prefWidth="156.0" />
-      <JFXButton buttonType="RAISED" layoutX="311.0" layoutY="436.0" onAction="#suivant" prefHeight="40.0" prefWidth="379.0" style="-fx-border-color: #00838F;" text="suivant ">
-         <font>
-            <Font size="18.0" />
+            <Font size="15.0" />
          </font>
       </JFXButton>
-      <Label layoutX="313.0" layoutY="388.0" text="type voiture ">
+      <JFXButton cancelButton="true" defaultButton="true" layoutX="619.0" layoutY="508.0" onAction="#valider" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #26A69A; -fx-background-radius: 20px;" text="valider ">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
-      </Label>
-      <JFXTextField fx:id="typeVoiture" focusColor="#00838f" layoutX="532.0" layoutY="388.0" prefHeight="25.0" prefWidth="156.0" />
+      </JFXButton>
    </children>
 </AnchorPane>

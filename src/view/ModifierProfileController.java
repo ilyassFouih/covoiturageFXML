@@ -5,6 +5,7 @@
  */
 package view;
 
+import bean.Personne;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import util.Session;
 
 /**
  * FXML Controller class
@@ -86,7 +88,7 @@ public class ModifierProfileController implements Initializable {
     @FXML
     void edditerProfil(ActionEvent actionEvent)throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("EdditerProfil.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("EditerProfile.fxml"));
         Scene scene= new Scene(root);
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
@@ -132,6 +134,19 @@ public class ModifierProfileController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        nomPrenom.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getNom() + " "+((Personne) Session.getAttribut("utilisateur connecter ")).getPrenom() );
+        email.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail()) ;
+        tel.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getTel()) ;
+        cin.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getCin()) ;
+        age.setText(String.valueOf(((Personne) Session.getAttribut("utilisateur connecter ")).getAge())) ;
+        if(((Personne) Session.getAttribut("utilisateur connecter ")).isFumeur())
+            fumeur.setText("fumeur : oui ");
+        else if(false==((Personne) Session.getAttribut("utilisateur connecter ")).isFumeur())
+            fumeur.setText("fumeur : non ");
+        else 
+            fumeur.setText("fumeur : *n'est pas definer* ");
+        
+        
     }   
 
     public Label getaEviter() {

@@ -82,6 +82,16 @@ public class Personne implements Serializable {
     public Personne() {
     }
 
+    public Personne(String nom, String prenom, String password, String tel, boolean fumeur, int age, String cin) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.password = password;
+        this.tel = tel;
+        this.fumeur = fumeur;
+        this.age = age;
+        this.cin = cin;
+    }
+
 
     public boolean isConducteur() {
         return Conducteur;
