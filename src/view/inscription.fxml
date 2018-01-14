@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="781.0" style="-fx-background-color: #00838F;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.InscriptionController">
+   <children>
+      <AnchorPane layoutX="129.0" layoutY="37.0" prefHeight="639.0" prefWidth="522.0" style="-fx-background-color: #CFD8DC;">
+         <children>
+            <JFXTextField fx:id="email" labelFloat="true" layoutX="166.0" layoutY="38.0" promptText="Entrer votre e-mail:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="nom" labelFloat="true" layoutX="166.0" layoutY="98.0" promptText="Entrer votre nom:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="prenom" labelFloat="true" layoutX="166.0" layoutY="158.0" promptText="Entrer votre prenom:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="age" labelFloat="true" layoutX="166.0" layoutY="220.0" promptText="Entrer votre age:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="tel" labelFloat="true" layoutX="166.0" layoutY="285.0" promptText="Entrer votre tel:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="cin" labelFloat="true" layoutX="166.0" layoutY="346.0" promptText="Entrer votre cin:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="166.0" layoutY="403.0" text="Fumeur:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXCheckBox fx:id="oui" layoutX="239.0" layoutY="403.0" text="Oui">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="non" layoutX="308.0" layoutY="403.0" text="Non">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXPasswordField fx:id="mdp" labelFloat="true" layoutX="166.0" layoutY="445.0" promptText="Votre mot de passe:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton buttonType="RAISED" layoutX="165.0" layoutY="569.0" onAction="#inscription" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: #00838F;" text="S'inscrire" textFill="#cfd8dc">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXPasswordField fx:id="mdpret" labelFloat="true" layoutX="166.0" layoutY="505.0" promptText="retaper le mot de passe:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXPasswordField>
+            <Label fx:id="msgEr" layoutX="158.0" layoutY="543.0" prefHeight="17.0" prefWidth="191.0" textFill="#f50f0f">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="46.5" radius="24.45" spread="0.11" width="53.3" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

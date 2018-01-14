@@ -38,6 +38,8 @@ public class Voyage implements Serializable {
     private List<Conducteur> conducteurs;
     @OneToMany(mappedBy = "voyage")
     private List<CircuitVoyage> circuitVoyages;
+    @OneToMany(mappedBy = "voyage")
+    private List<Passager> passagers;
     
 
     public Voyage() {
@@ -49,10 +51,6 @@ public class Voyage implements Serializable {
         this.dateVoyage = dateVoyage;
     }
     
-    
-    
-    
-
     public Voyage(Long id) {
         this.id = id;
     }
@@ -141,11 +139,17 @@ public class Voyage implements Serializable {
         }
         return true;
     }
+    
+    
 
     @Override
     public String toString() {
-        return "Voyage{" + "id=" + id + ", villeDepart=" + villeDepart + ", villeArriver=" + villeArriver + ", dateVoyage=" + dateVoyage + '}';
+        return "" + "ville de Depart : " + villeDepart + "      ville d'Arriver : " + villeArriver + "      date de Voyage : " + dateVoyage + '}';
     }
+
+   
+
+  
 
   
 

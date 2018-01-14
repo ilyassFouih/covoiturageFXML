@@ -56,12 +56,13 @@ public class loginFormController implements Initializable {
         switch (res) {
             case -1:
                 errorEmail.setText("*l'email n'existe pas ");
+                emailScene.setStyle("-fx-background-color : red;");
                 break;
             case -2:
                 errorPass.setText("*password incorrecte ");
+                passwordScene.setStyle("-fx-background-color : red;");
                 break;
             default:
-                JOptionPane.showMessageDialog(null, res, "connextion avec succe ", res);
 //                ---------ouvrire session---------------------------
                 Personne utilisateur= personneService.find(emailScene.getText());
                 Session.updateAttribute(utilisateur, "utilisateur connecter ");
@@ -76,7 +77,7 @@ public class loginFormController implements Initializable {
     }
     @FXML
     public void inscription(ActionEvent actionEvent)throws IOException{
-                Parent root = FXMLLoader.load(getClass().getResource("InscriptionUtilisateur.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("inscription.fxml"));
                 Scene scene= new Scene(root);
                 Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
                 window.setScene(scene);

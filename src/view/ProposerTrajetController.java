@@ -5,6 +5,9 @@
  */
 package view;
 
+import bean.Conducteur;
+import bean.Ville;
+import bean.Voyage;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -12,6 +15,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -22,6 +26,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import service.VilleService;
+import service.VoyageService;
+import util.Session;
 
 /**
  * FXML Controller class
@@ -29,31 +35,26 @@ import service.VilleService;
  * @author IlyassElfouih
  */
 public class ProposerTrajetController implements Initializable {
-    
-      /**
+
+    /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//        VilleService villeService = new VilleService();
-//        List<String> villes = villeService.getAllvilles();
-//        villeDepart.setItems(FXCollections.observableArrayList(villes));
-                
-//        pieceJointeComboBox.setItems
-//        (FXCollections.observableArrayList(pieceJointeFacade.findPieceJointeByFilierePJF(filiere.getNom())));
-        
-        
-        
-        
-    }    
-      
-     @FXML
-    private JFXComboBox<?> villeDepart;
-      
+        VilleService villeService = new VilleService();
+        List<Ville> villes = villeService.getAllvilles();
+            villeDepart.setItems(FXCollections.observableArrayList(villes));
+            villeArriver.setItems(FXCollections.observableArrayList(villes));
+               
+
+    }
 
     @FXML
-    private JFXComboBox<?> villeArriver;
+    private JFXComboBox<Ville> villeDepart;
+
+    @FXML
+    private JFXComboBox<Ville> villeArriver;
 
     @FXML
     private JFXDatePicker dateDepart;
@@ -66,33 +67,73 @@ public class ProposerTrajetController implements Initializable {
     @FXML
     private JFXTextField typeVoiture;
     
-     @FXML
-    void suivant(ActionEvent actionEvent) throws IOException {
-//         Session.updateAttribute(utilisateur, "utilisateur connecter ");
-//         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+    VilleService villeService = new VilleService();
 
-         Parent root = FXMLLoader.load(getClass().getResource("ChoixVilleCircuit.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+    @FXML
+    public Voyage getVoyage() {
+        Ville villedep = villeService.find(villeDepart.getValue().getId());
+        Ville villearr = villeService.find(villeArriver.getValue().getId());
+        Date date = new Date(dateDepart.getValue().toEpochDay());
+        Voyage voyage = new Voyage(villedep, villearr, date);
+        return voyage;
     }
 
     @FXML
-    void chercherTrajet(ActionEvent actionEvent) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("ChercherTrajet.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+    public Conducteur getConducteur() {
+
+        Conducteur conducteur = new Conducteur();
+        conducteur.setNbrPlaceMax(new Integer(nbrPlaceMax.getText()));
+        conducteur.setPrix(new Double(prix.getText()));
+        conducteur.setTypeVoiture(typeVoiture.getText());
+//      conducteur.setPersonne(new Personne(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail()));
+
+        return conducteur;
+    }
+
+    @FXML
+    void suivant(ActionEvent actionEvent) throws IOException {
+//        ConducteurService instance = new ConducteurService();
+//      VoyageService voyageService = new VoyageService();
+        Voyage voyage = getVoyage();
+        Conducteur conducteur = getConducteur();
+
+//        ---------------------------creation BD---------------------------------------------------
+//       instance.proposerTrajet((((Personne) Session.getAttribut("utilisateur connecter ")).getEmail()), voyage, conducteur);
+        
+//        --------------------session update--------------------------------------------
+//            VoyageService voyageService = new VoyageService();
+//            voyage.setId(voyageService.generateId("Voyage", "id"));
+//            System.out.println(voyage);
+//            voyageService.create(voyage);
+            Session.updateAttribute(voyage, "voyage");
+            Session.updateAttribute(conducteur, "conducteur");
+            
+            
+            
+//         -----------------------passer au page suivante------------------------------
+            Parent root = FXMLLoader.load(getClass().getResource("ChoixVilleCircuit.fxml"));
+            Scene scene = new Scene(root);
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
         
     }
 
     @FXML
+    void chercherTrajet(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ChercherTrajet.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+
+    }
+
+    @FXML
     void deconexion(ActionEvent actionEvent) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
@@ -100,8 +141,8 @@ public class ProposerTrajetController implements Initializable {
     @FXML
     void home(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
@@ -109,8 +150,8 @@ public class ProposerTrajetController implements Initializable {
     @FXML
     void modifierProfile(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("ModifierProfile.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
@@ -118,8 +159,8 @@ public class ProposerTrajetController implements Initializable {
     @FXML
     void notification(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Notification.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
@@ -127,19 +168,17 @@ public class ProposerTrajetController implements Initializable {
     @FXML
     void proposerTrajet(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("ProposerTrajet.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
 
-   
-
     @FXML
     void tableauDeBord(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("TableauDeBord.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
@@ -148,7 +187,7 @@ public class ProposerTrajetController implements Initializable {
         return villeDepart;
     }
 
-    public void setVilleDepart(JFXComboBox<?> villeDepart) {
+    public void setVilleDepart(JFXComboBox<Ville> villeDepart) {
         this.villeDepart = villeDepart;
     }
 
@@ -156,7 +195,7 @@ public class ProposerTrajetController implements Initializable {
         return villeArriver;
     }
 
-    public void setVilleArriver(JFXComboBox<?> villeArriver) {
+    public void setVilleArriver(JFXComboBox<Ville> villeArriver) {
         this.villeArriver = villeArriver;
     }
 
@@ -191,10 +230,5 @@ public class ProposerTrajetController implements Initializable {
     public void setTypeVoiture(JFXTextField typeVoiture) {
         this.typeVoiture = typeVoiture;
     }
-    
-    
-    
-  
-    
-    
+
 }

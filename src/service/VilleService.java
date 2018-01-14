@@ -19,8 +19,8 @@ import java.util.List;
         super(Ville.class);
     }
     
-    public List<String > getAllvilles(){
-        List<String> vls = getEntityManager().createQuery("select v.nom from Ville v ").getResultList();
+    public List<Ville > getAllvilles(){
+        List<Ville> vls = findAll();
         
 //        Villes =findAll();
 //        for (int i = 0; i < Villes.size(); i++) {
@@ -29,6 +29,13 @@ import java.util.List;
         
         return vls;
     }
+    public Long getId(String nom){
+       
+        return  (Long) getEntityManager().createQuery("select v.id "
+                + "from Ville v where v.nom like '"+nom+"'").getSingleResult();
+        
+    }
+    
     
     
 }

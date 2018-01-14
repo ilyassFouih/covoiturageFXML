@@ -8,6 +8,7 @@ package service;
 import bean.CircuitVoyage;
 import bean.Ville;
 import bean.Voyage;
+import java.util.List;
 
 /**
  *
@@ -19,13 +20,19 @@ public class CircuitVoyageService extends AbstractFacade<CircuitVoyage>{
         super(CircuitVoyage.class);
     }
      
-    public int creerCircuit( Voyage voyage, Ville villeDep, Ville villeArr, int order, double prix){
+    public int creerCircuit( Voyage voyage, List<CircuitVoyage> circuitVoyages){
          
         VoyageService voyageService = new VoyageService();
+//               voyage.setId(voyageService.generateId("Voyage", "id"));
         voyageService.create(voyage);
-        CircuitVoyage circuitVoyage = new CircuitVoyage(voyage,  villeDep,  villeArr,  order,  prix);
-        create(circuitVoyage);
+        System.out.println(voyage);
+        for (CircuitVoyage circuitVoyage : circuitVoyages) {
+              circuitVoyage.setVoyage(voyage);
+              create(circuitVoyage);
+              System.out.println(circuitVoyage);
      
+        }
+      
         return 1;
         
     }

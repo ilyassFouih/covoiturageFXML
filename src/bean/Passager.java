@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,6 +23,10 @@ public class Passager implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
+    private Personne personne;
+    @ManyToOne
+    private Voyage voyage;
 
     public Long getId() {
         return id;
@@ -30,6 +35,23 @@ public class Passager implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Personne getPersonne() {
+        return personne;
+    }
+
+    public void setPersonne(Personne personne) {
+        this.personne = personne;
+    }
+
+    public Voyage getVoyage() {
+        return voyage;
+    }
+
+    public void setVoyage(Voyage voyage) {
+        this.voyage = voyage;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -53,7 +75,9 @@ public class Passager implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Passager[ id=" + id + " ]";
+        return " " + voyage ;
     }
+
+   
     
 }

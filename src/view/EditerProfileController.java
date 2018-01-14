@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
+import java.util.Objects;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,14 +72,41 @@ public class EditerProfileController implements Initializable {
     @FXML
     private Label msgErr;
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EditerProfileController other = (EditerProfileController) obj;
+        if (!Objects.equals(this.mdp, other.mdp)) {
+            return false;
+        }
+        if (!Objects.equals(this.retmdp, other.retmdp)) {
+            return false;
+        }
+        return true;
+    }
+
     @FXML
     public void modifier(ActionEvent actionEvent) throws IOException {
         
         PersonneService personneService = new PersonneService();
         Personne personne = getParam();
-            if ((mdp.getText() != retmdp.getText()) && personne.getPassword()!=null) {
+            if ((!mdp.getText().equals(retmdp.getText())) && personne.getPassword()!=null) {
             msgErr.setText("*le mot de passe taper n'est pas identique*");
-            msgErr.setBackground(Background.EMPTY);
+            retmdp.setStyle("-fx-background-color : red;");
         } else {
             
             

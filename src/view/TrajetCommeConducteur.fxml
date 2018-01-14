@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.TableauDeBordController">
+<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="908.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TrajetCommeConducteurController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="-11.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane id="AnchorPane" layoutY="-2.0" prefHeight="546.0" prefWidth="956.0">
          <children>
             <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="562.0" prefWidth="281.0" style="-fx-background-color: #616161;">
                <children>
@@ -55,33 +56,24 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="278.0" layoutY="-2.0" prefHeight="76.0" prefWidth="478.0" style="-fx-background-color: #CFD8DC;">
+            <AnchorPane layoutX="278.0" layoutY="-2.0" prefHeight="76.0" prefWidth="678.0" style="-fx-background-color: #CFD8DC;">
                <children>
-                  <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="24.0" onAction="#deconexion" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #9E9E9E; -fx-border-color: #FF5252;" text="deconexion" textFill="#d32f2f">
+                  <JFXButton buttonType="RAISED" layoutX="547.0" layoutY="22.0" onAction="#deconexion" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #9E9E9E; -fx-border-color: #FF5252;" text="deconexion" textFill="#d32f2f">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </JFXButton>
-                  <Label layoutX="14.0" layoutY="30.0" text="Tableau de bord" textFill="#424242" underline="true">
+                  <Hyperlink layoutX="29.0" layoutY="27.0" onAction="#retour" text="&lt; retour " underline="true">
                      <font>
-                        <Font name="Bell MT Bold" size="24.0" />
+                        <Font size="15.0" />
                      </font>
-                     <effect>
-                        <DropShadow height="89.21" radius="28.534999999999997" width="26.93" />
-                     </effect>
-                  </Label>
+                  </Hyperlink>
                </children>
             </AnchorPane>
-            <JFXButton buttonType="RAISED" layoutX="286.0" layoutY="152.0" onAction="#trajetCommeConducteur" ripplerFill="#0d0d0d" style="-fx-background-color: #607D8B; -fx-background-radius: 30px;" text="mes trajet comme conducteur" textFill="#fff4f4">
-               <font>
-                  <Font name="Arial Bold" size="29.0" />
-               </font>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="286.0" layoutY="269.0" onAction="#tajetCommePaassager" ripplerFill="#0d0d0d" style="-fx-background-color: #607D8B; -fx-background-radius: 30px;" text="mes trajet comme passager" textFill="#fff4f4">
-               <font>
-                  <Font name="Arial Bold" size="31.0" />
-               </font>
-            </JFXButton>
+            <TableView fx:id="jtableConducteur" fixedCellSize="0.0" layoutX="293.0" layoutY="97.0" onMouseClicked="#jtableMouseClicked" prefHeight="434.0" prefWidth="645.0" style="-fx-fixed-cell-size: 50px; -fx-border-color: #26a69a;">
+               <effect>
+                  <DropShadow />
+               </effect></TableView>
          </children>
       </AnchorPane>
    </children>

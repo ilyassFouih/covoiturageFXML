@@ -4,12 +4,13 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>bean.teste</class>
     <class>bean.Avis</class>
-    <class>bean.CircuitVoyage</class>
     <class>bean.Conducteur</class>
     <class>bean.Passager</class>
-    <class>bean.Personne</class>
     <class>bean.Ville</class>
     <class>bean.Voyage</class>
+    <class>bean.Personne</class>
+    <class>bean.Cn</class>
+    <class>bean.CircuitVoyage</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/covoiturage?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

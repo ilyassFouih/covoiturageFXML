@@ -39,6 +39,8 @@ public class Personne implements Serializable {
     private List<Conducteur> conducteurs;
     @OneToMany(mappedBy = "personne")
     private List<Avis> aviss;
+    @OneToMany(mappedBy = "personne")
+    private List<Passager> passagers;
 
     public Personne(String email, String nom, String prenom, String password, String tel) {
         this.email = email;
@@ -242,8 +244,10 @@ public class Personne implements Serializable {
 
     @Override
     public String toString() {
-        return "Personne{" + "email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", tel=" + tel + ", fumeur=" + fumeur + ", age=" + age + ", cin=" + cin + ", avis=" + avis + ", Conducteur=" + Conducteur + ", nbrVoyageTotale=" + nbrVoyageTotale + ", nbrVoyageConducteur=" + nbrVoyageConducteur + ", nbrVoyagePassager=" + nbrVoyagePassager + '}';
+        return "email    :" + email + " ,nom    :" + nom + "  ,prenom    " + prenom + "  ,tel    :" + tel;
     }
+
+  
 
   
 

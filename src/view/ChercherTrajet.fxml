@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.ChercherTrajetController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChercherTrajetController">
    <children>
       <AnchorPane layoutX="-14.0" prefHeight="562.0" prefWidth="281.0" style="-fx-background-color: #616161;">
          <children>
@@ -70,5 +69,6 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="anchourPanne" layoutX="327.0" layoutY="161.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

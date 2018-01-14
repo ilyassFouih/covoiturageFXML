@@ -31,6 +31,14 @@ public class Ville implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nom ;
+
+    public Ville(Long id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
+    public Ville() {
+    }
     
     
 
@@ -75,7 +83,9 @@ public class Ville implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Ville[ id=" + id + " ]";
+        return "" + nom + "";
     }
+
+   
     
 }

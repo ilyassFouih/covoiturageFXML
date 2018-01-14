@@ -9,6 +9,7 @@ import bean.Passager;
 import bean.Ville;
 import bean.Voyage;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -25,9 +26,9 @@ public class PassagerService extends AbstractFacade<Passager>{
         String count="select v from Voyage v where 1=1 ";
         
         if(villeDep!=null)
-            count+=" and v.villeArriver='"+villeArr+"'";
+            count+=" and v.villeArriver='"+villeDep+"'";
         if(villeArr!=null)
-            count+=" and v.villeDepart='"+villeDep+"'";
+            count+=" and v.villeDepart='"+villeArr+"'";
         if(dateVoyage!=null)
             count+=" and v.dateVoyage="+dateVoyage+"";
         
@@ -36,6 +37,14 @@ public class PassagerService extends AbstractFacade<Passager>{
       
     }
     
+    public List<Passager> getPassagerForVoyage(Voyage voyage){
+        return getEntityManager().createQuery("select p "
+                + "from Passager p where p.voyage.id= '"+voyage.getId()+"'").getResultList();
+    } 
+    public List<Passager> findByEmail(String email){
+        return getEntityManager().createQuery("select p from Passager p where p.personne.email ='"+email+"'")
+                .getResultList();
+    }
 }
     
 

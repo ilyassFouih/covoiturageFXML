@@ -15,12 +15,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
 import helper.CircuitVoyageFxHelper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +28,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 import service.CircuitVoyageService;
 import service.ConducteurService;
 import service.VilleService;
@@ -50,7 +47,7 @@ public class ChoixVilleCircuitController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         VilleService villeService = new VilleService();
-        List<String> villes = villeService.getAllvilles();
+        List<Ville> villes = villeService.getAllvilles();
 //        for (int i = 0; i < villes.size(); i++) {
 //            villeDepCircuit.getItems().add(villes.get(i));
 //            villeArrCircuit.getItems().add(villes.get(i));
@@ -60,10 +57,10 @@ public class ChoixVilleCircuitController implements Initializable {
  
     }    
     @FXML
-    private JFXComboBox<String> villeDepCircuit;
+    private JFXComboBox<Ville> villeDepCircuit;
 
     @FXML
-    private JFXComboBox<String> villeArrCircuit;
+    private JFXComboBox<Ville> villeArrCircuit;
 
     @FXML
     private JFXTextField prixVilleCircuit;
@@ -73,20 +70,15 @@ public class ChoixVilleCircuitController implements Initializable {
     
     private int i=0;
     private List<CircuitVoyage> circuitVoyages =new ArrayList();
+    VilleService villeService = new VilleService();
     
     public CircuitVoyage getCircuitVoyage(){
         CircuitVoyage circuitVoyage = new CircuitVoyage();
-        VilleService villeService = new VilleService();
         circuitVoyage.setPrix(Double.valueOf(prixVilleCircuit.getText()));
         
-        Ville villeDEP = new Ville();
-        villeDEP.setNom((String) villeDepCircuit.getSelectionModel().getSelectedItem());
-        villeDEP.setId(villeService.getId((String) villeDepCircuit.getSelectionModel().getSelectedItem()));
+        Ville villeDEP =villeService.find(villeDepCircuit.getValue().getId());
         circuitVoyage.setVilleDep(villeDEP);
-     
-        Ville villeARR = new Ville();
-        villeARR.setNom((String) villeArrCircuit.getSelectionModel().getSelectedItem());  
-        villeARR.setId(villeService.getId((String) villeArrCircuit.getSelectionModel().getSelectedItem()));
+        Ville villeARR =villeService.find(villeArrCircuit.getValue().getId()) ;
         circuitVoyage.setVilleArr(villeARR);
         
         return circuitVoyage;
@@ -99,7 +91,6 @@ public class ChoixVilleCircuitController implements Initializable {
             CircuitVoyage circuitVoyage = getCircuitVoyage();
             circuitVoyage.setNum(i);
             circuitVoyages.add(circuitVoyage);
-            System.out.println(circuitVoyage);
             new CircuitVoyageFxHelper(jTable, circuitVoyages);
             jTable.refresh();
 //            List<Ville> item = (List<Ville>) circuitVoyageFxHelper.getSelected().getVilleDep();
@@ -110,15 +101,15 @@ public class ChoixVilleCircuitController implements Initializable {
       void valider(ActionEvent actionEvent) throws IOException {
   //        ---------------------creation du Conducteur Voyage et circuit  ------------------------
   
-                System.out.println(((Personne) Session.getAttribut("utilisateur connecter ")));
-                System.out.println(circuitVoyages);
-                System.out.println(((Conducteur) Session.getAttribut("conducteur")));
+//                System.out.println(((Personne) Session.getAttribut("utilisateur connecter ")));
+//                System.out.println(circuitVoyages);
+                System.out.println(((Voyage) Session.getAttribut("voyage")));
              CircuitVoyageService circuitVoyageService = new CircuitVoyageService();
              ConducteurService conducteurService = new ConducteurService();
              
-              circuitVoyageService.creerCircuit(((Voyage) Session.getAttribut("Voyage")), circuitVoyages);
+              circuitVoyageService.creerCircuit(((Voyage) Session.getAttribut("voyage")), circuitVoyages);
               conducteurService.proposerTrajet(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail(),
-                      ((Voyage) Session.getAttribut("Voyage")), ((Conducteur) Session.getAttribut("conducteur")));//ta proposer ?? 
+                      ((Voyage) Session.getAttribut("voyage")), ((Conducteur) Session.getAttribut("conducteur")));//ta proposer ?? 
   //          -------------------------redirection---------------------------------  
           Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
           Scene scene= new Scene(root);
@@ -196,15 +187,15 @@ public class ChoixVilleCircuitController implements Initializable {
         return villeDepCircuit;
     }
 
-    public void setVilleDepCircuit(JFXComboBox<String> villeDepCircuit) {
+    public void setVilleDepCircuit(JFXComboBox<Ville> villeDepCircuit) {
         this.villeDepCircuit = villeDepCircuit;
     }
 
-    public JFXComboBox<String> getVilleArrCircuit() {
+    public JFXComboBox<Ville> getVilleArrCircuit() {
         return villeArrCircuit;
     }
 
-    public void setVilleArrCircuit(JFXComboBox<String> villeArrCircuit) {
+    public void setVilleArrCircuit(JFXComboBox<Ville> villeArrCircuit) {
         this.villeArrCircuit = villeArrCircuit;
     }
 

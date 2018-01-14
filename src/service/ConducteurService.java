@@ -5,12 +5,9 @@
  */
 package service;
 
-import bean.CircuitVoyage;
 import bean.Conducteur;
 import bean.Personne;
-import bean.Ville;
 import bean.Voyage;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,21 +20,20 @@ public class ConducteurService extends AbstractFacade<Conducteur>{
         super(Conducteur.class);
     }
     
-    public int proposerTrajet(String email,Voyage voyage,Conducteur conducteur){
+    public void proposerTrajet(String email,Voyage voyage,Conducteur conducteur){
        
-        VoyageService voyageService = new VoyageService();
-        voyageService.create(voyage);
-        
-        Personne personne = new Personne(email);
-        
+      
+        PersonneService instance = new PersonneService();
+        Personne personne = instance.find(email);
         conducteur.setVoyage(voyage);
         conducteur.setPersonne(personne);
-        
         create(conducteur);
         
-        
-        
-        return 1; 
+    }
+    
+    public List<Conducteur> getConducteurByEmail(String email){
+        return getEntityManager().createQuery("select c from Conducteur c where c.personne.email='"+email+"'")
+                .getResultList();
     }
     
 }

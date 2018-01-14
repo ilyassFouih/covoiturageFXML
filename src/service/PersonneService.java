@@ -19,7 +19,7 @@ public class PersonneService extends AbstractFacade<Personne> {
 
     public int seConnecter(Personne personne) {
         Personne loader = find(personne.getId());
-        if (personne == null) {
+        if (loader == null) {
             return -1;//l'email n'existe pas 
         } else if (!loader.getPassword().equals(personne.getPassword())) {
             return -2;//le password est incorrecte 
