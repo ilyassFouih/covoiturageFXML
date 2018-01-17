@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="679.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AfficherCondCircuitController">
+   <children>
+      <AnchorPane layoutX="-14.0" prefHeight="679.0" prefWidth="281.0" style="-fx-background-color: #616161;">
+         <children>
+            <Label layoutX="42.0" layoutY="23.0" text="votre application " textFill="#26a69a">
+               <font>
+                  <Font name="Britannic Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="48.0" text="de covoiturage" textFill="#26a69a">
+               <font>
+                  <Font name="Britannic Bold" size="25.0" />
+               </font>
+            </Label>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="278.0" mnemonicParsing="false" onAction="#chercherTrajet" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="chercher un trajet " textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="334.0" onAction="#proposerTrajet" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="proposer un trajet " textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="TOP_CENTER" buttonType="RAISED" layoutX="31.0" layoutY="395.0" onAction="#notification" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="notifications" textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="449.0" onAction="#tableauDeBord" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="tableau de bord " textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="31.0" layoutY="156.0" mnemonicParsing="false" onAction="#home" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="home " textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="30.0" layoutY="218.0" onAction="#modifierProfile" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #00838F;" text="voir profil" textFill="#f8f0f0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <Hyperlink layoutX="30.0" layoutY="629.0" onAction="#retour" prefHeight="35.0" prefWidth="217.0" text="&lt;-Retour" textFill="#f9f8f8">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Hyperlink>
+            <Label fx:id="notLabel" layoutX="212.0" layoutY="401.0" prefHeight="28.0" prefWidth="29.0" style="-fx-background-radius: 50px;" textFill="#f26565">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="266.0" prefHeight="679.0" prefWidth="479.0" style="-fx-background-color: #CFD8DC;">
+         <children>
+            <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="24.0" onAction="#deconexion" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #9E9E9E; -fx-border-color: #FF5252;" text="deconexion" textFill="#d32f2f">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="10.0" layoutY="17.0" prefHeight="31.0" prefWidth="332.0" text="Le Conducteur du voyage :" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="77.0" prefHeight="25.0" prefWidth="117.0" text="Email :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="139.0" layoutY="77.0" prefHeight="25.0" prefWidth="281.0" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="113.0" prefHeight="25.0" prefWidth="178.0" text="Nom complet :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="fumeur" layoutX="14.0" layoutY="146.0" prefHeight="25.0" prefWidth="178.0" text="Fumeur  :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="181.0" prefHeight="25.0" prefWidth="90.0" text="Avis :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenom" layoutX="139.0" layoutY="113.0" prefHeight="25.0" prefWidth="105.0" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="nom" layoutX="280.0" layoutY="113.0" prefHeight="25.0" prefWidth="105.0" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="booleanText" layoutX="139.0" layoutY="146.0" prefHeight="25.0" prefWidth="134.0" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="181.0" prefHeight="25.0" prefWidth="82.0" text="Parfait :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="206.0" prefHeight="25.0" prefWidth="82.0" text="Tres bien :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="231.0" prefHeight="25.0" prefWidth="82.0" text="Bien :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="256.0" prefHeight="25.0" prefWidth="82.0" text="A eviter :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXProgressBar fx:id="prafait" layoutX="221.0" layoutY="192.0" prefHeight="3.0" progress="0.17" />
+            <JFXProgressBar fx:id="tBien" layoutX="221.0" layoutY="217.0" progress="0.11" />
+            <JFXProgressBar fx:id="bien" layoutX="221.0" layoutY="242.0" progress="0.03" />
+            <JFXProgressBar fx:id="aEviter" layoutX="221.0" layoutY="267.0" progress="0.05" />
+            <AnchorPane fx:id="anchourPanne" layoutX="10.0" layoutY="498.0" prefHeight="167.0" prefWidth="478.0">
+               <children>
+                  <TableView fx:id="tableCircuit" layoutX="5.0" layoutY="5.0" onMouseClicked="#reserverUnCircuitMouseClicked" prefHeight="158.0" prefWidth="468.0" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="14.0" layoutY="290.0" prefHeight="25.0" prefWidth="82.0" text="Voyage :" />
+            <Label layoutX="14.0" layoutY="323.0" prefHeight="25.0" prefWidth="105.0" text="Ville de depart :" />
+            <Label layoutX="14.0" layoutY="353.0" prefHeight="25.0" prefWidth="82.0" text="Ville d'arrive :" />
+            <Label layoutX="14.0" layoutY="386.0" prefHeight="25.0" prefWidth="82.0" text="Date Depart :" />
+            <Label layoutX="14.0" layoutY="421.0" prefHeight="25.0" prefWidth="82.0" text="Prix :" />
+            <Label fx:id="villedep" layoutX="139.0" layoutY="323.0" prefHeight="25.0" prefWidth="117.0" text="Label" />
+            <Label fx:id="villeArr" layoutX="139.0" layoutY="353.0" prefHeight="25.0" prefWidth="82.0" text="Label" />
+            <Label fx:id="dateV" layoutX="139.0" layoutY="386.0" prefHeight="25.0" prefWidth="294.0" text="Label" />
+            <Label fx:id="prixV" layoutX="139.0" layoutY="421.0" prefHeight="25.0" prefWidth="82.0" text="Label" />
+            <JFXButton layoutX="316.0" layoutY="461.0" onAction="#reserverUnePlace" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #616161;" text="Reserver un place" textFill="#fdfafa">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

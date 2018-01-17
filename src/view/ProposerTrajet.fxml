@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -54,6 +53,11 @@
                   <Font size="15.0" />
                </font>
             </JFXButton>
+            <Label fx:id="notLabel" layoutX="198.0" layoutY="404.0" prefHeight="28.0" prefWidth="29.0" style="-fx-background-radius: 50px;" textFill="#f26565">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="279.0" prefHeight="76.0" prefWidth="478.0" style="-fx-background-color: #CFD8DC;">

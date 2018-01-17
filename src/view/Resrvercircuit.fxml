@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="371.0" prefWidth="629.0" style="-fx-background-color: #00838F;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ResrvercircuitController">
+   <children>
+      <AnchorPane layoutX="72.0" layoutY="14.0" prefHeight="321.0" prefWidth="486.0" style="-fx-background-color: #CFD8DC;">
+         <effect>
+            <DropShadow height="71.41" radius="35.205" width="71.41" />
+         </effect>
+         <children>
+            <JFXButton layoutX="162.0" layoutY="267.0" onAction="#reserverUnCircuit" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #616161;" text="Reserver le circuit" textFill="#fdfafa">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="44.72" radius="18.895" width="32.86" />
+               </effect>
+            </JFXButton>
+            <Label layoutX="14.0" layoutY="14.0" text="vous avez choisit le circuit :">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="60.0" text="ville de depat : ">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="103.0" text="ville d'arriver :">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="146.0" text="pour le prix :">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="196.0" text=" le conducteur :">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="villeDepCircuit" layoutX="194.0" layoutY="60.0" text="villlesep">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="villeArrCircuit" layoutX="194.0" layoutY="103.0" text="villeArr">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="prixCircuit" layoutX="196.0" layoutY="146.0" text="prix">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="conducteurCircuit" layoutX="196.0" layoutY="196.0" text="condict">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

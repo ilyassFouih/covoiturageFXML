@@ -5,17 +5,26 @@
  */
 package view;
 
+import bean.Notification;
+import bean.Personne;
+import helper.NotificationFxHelper;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import service.NotificationService;
+import util.Session;
 
 /**
  * FXML Controller class
@@ -23,6 +32,12 @@ import javafx.stage.Stage;
  * @author IlyassElfouih
  */
 public class NotificationController implements Initializable {
+    ViewLuncherLoging viewLuncherLoging = new ViewLuncherLoging();
+    
+      @FXML
+    private TableView<Notification> noticationTable;
+      NotificationFxHelper notificationFxHelper;
+      NotificationService notificationService = new NotificationService();
 
     /**
      * Initializes the controller class.
@@ -30,7 +45,20 @@ public class NotificationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+      notificationFxHelper= new NotificationFxHelper(noticationTable,
+               notificationService.listNotificationNonLu(((Personne)Session.getAttribut("utilisateur connecter "))));
+        
+    }  
+    
+    
+       @FXML
+    void reserverUnCircuitMouseClicked(Event event) throws IOException {
+        Notification notification = notificationFxHelper.getSelected();
+        Session.updateAttribute(notification, "confirmationNotification");
+        notificationService.edditerVu(notification);
+        viewLuncherLoging.forWardNewTab(event, "ConfirmationPassager.fxml", this.getClass());
+
+    }
     
      @FXML
     void chercherTrajet(ActionEvent actionEvent) throws IOException {

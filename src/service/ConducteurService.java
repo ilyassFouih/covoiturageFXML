@@ -36,4 +36,19 @@ public class ConducteurService extends AbstractFacade<Conducteur>{
                 .getResultList();
     }
     
+     public Conducteur findConducteurbyVoyage(Voyage voyage){
+
+        return (Conducteur) getEntityManager().createQuery("SELECT c FROM Conducteur c WHERE c.voyage.id="+voyage.getId()).getSingleResult();
+    }
+     
+     public boolean nbrPlaceMaxAtteinte(Voyage voyage){
+         Conducteur conducteur = (Conducteur) getEntityManager()
+                 .createQuery("select c from Conducteur c where c.voyage.id="+voyage.getId()+"").getSingleResult();
+         if(conducteur.getNbrPlaceMax()==conducteur.getNbrPlaceOuccuper()){
+             return true ;
+         }else 
+             return false;
+         
+     }
+    
 }

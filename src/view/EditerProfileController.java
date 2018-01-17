@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -100,7 +101,7 @@ public class EditerProfileController implements Initializable {
     }
 
     @FXML
-    public void modifier(ActionEvent actionEvent) throws IOException {
+    public void modifier(Event event) throws IOException {
         
         PersonneService personneService = new PersonneService();
         Personne personne = getParam();
@@ -112,11 +113,14 @@ public class EditerProfileController implements Initializable {
             
             int res = personneService.modifierProfil(personne,((Personne) Session.getAttribut("utilisateur connecter ")).getEmail());
             if (res == 1) {
-                Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"));
-                Scene scene = new Scene(root);
-                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                window.setScene(scene);
-                window.show();
+                
+                ViewLuncherLoging viewLuncherLoging = new ViewLuncherLoging();
+                viewLuncherLoging.forWardMousePrecedentTab(event, "loginForm.fxml", this.getClass());
+//                Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"));
+//                Scene scene = new Scene(root);
+//                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+//                window.setScene(scene);
+//                window.show();
             }
         }
     }

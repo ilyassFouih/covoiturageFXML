@@ -42,15 +42,25 @@ public class TrajetCommePassagerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        new PassagerVoyageFxHelper(jtablePassager, passagerService.
-                findByEmail(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail()));
+       passagerVoyageFxHelper = new PassagerVoyageFxHelper(jtablePassager
+                , passagerService
+                .findByEmail(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail()));
         
     } 
     
     
     @FXML
-    void jtableOnMouseClicked(Event event) {
+    void jtableOnMouseClicked(Event event) throws IOException {
+        Passager passager = new Passager();
+        passager = passagerVoyageFxHelper.getSelected();
+        Session.updateAttribute(passager, "passager Selectione");
+        System.out.println(passager);
         
+        Parent root = FXMLLoader.load(getClass().getResource("ListeDesPassagersEtConducteur.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
         
 
     }

@@ -56,6 +56,11 @@
                               <Font size="15.0" />
                            </font>
                         </JFXButton>
+                        <Label fx:id="notLabel" layoutX="207.0" layoutY="401.0" prefHeight="28.0" prefWidth="29.0" style="-fx-background-radius: 50px;" textFill="#f26565">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="278.0" layoutY="-2.0" prefHeight="76.0" prefWidth="572.0" style="-fx-background-color: #CFD8DC;">
@@ -72,7 +77,7 @@
                         </Hyperlink>
                      </children>
                   </AnchorPane>
-                  <TableView fx:id="jtablePassager" fixedCellSize="0.0" layoutX="294.0" layoutY="153.0" onMouseClicked="#jtableOnMouseClicked" prefHeight="363.0" prefWidth="540.0" style="-fx-fixed-cell-size: 50px; -fx-border-color: #26a69a;">
+                  <TableView fx:id="jtablePassager" fixedCellSize="0.0" layoutX="294.0" layoutY="153.0" onMouseClicked="#jtableOnMouseClicked" prefHeight="363.0" prefWidth="530.0" style="-fx-fixed-cell-size: 50px; -fx-border-color: #26a69a;">
                      <effect>
                         <DropShadow />
                      </effect>

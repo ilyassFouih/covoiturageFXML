@@ -45,8 +45,8 @@ public class DonnerAvisController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         Personne personne = (Personne) Session.getAttribut("personne Selectionner");
-        nom.setText(personne.getNom() );
-        prenom.setText(personne.getPrenom());
+        nom.setText(personne.getNom()+" "+personne.getPrenom() );
+        prenom.setText("");
         age.setText(String.valueOf(personne.getAge()));
         tel.setText(String.valueOf(personne.getTel()));
         
@@ -110,11 +110,13 @@ public class DonnerAvisController implements Initializable {
             var++;
        }
        if(var==1){
+           error.setText("");
+           error.getStyle();
            AvisService avisService = new AvisService();
-           avisService.create(avis);
+           avisService.createAvis(avis);
        Notifications notifications = Notifications.create()
                  .title("avis ajouter")
-                 .text("boussni")
+                 .text("vous avez choisit "+avisService.getAvis(avis.getAvis()))
                  .graphic(null)
                  .hideAfter(Duration.seconds(5))
                  .position(Pos.TOP_LEFT);
@@ -124,6 +126,7 @@ public class DonnerAvisController implements Initializable {
        else {
            error.setText("*veuillier caucher une seule case ");
        }
+       
     }
 
     @FXML
@@ -132,7 +135,7 @@ public class DonnerAvisController implements Initializable {
     }
     @FXML
     void retour(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ListeDesPassagers.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("TableauDeBord.fxml"));
         Scene scene= new Scene(root);
         Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(scene);

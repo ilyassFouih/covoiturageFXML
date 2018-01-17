@@ -5,7 +5,10 @@
  */
 package service;
 
+import bean.Conducteur;
+import bean.Notification;
 import bean.Passager;
+import bean.Personne;
 import bean.Ville;
 import bean.Voyage;
 import java.util.Date;
@@ -44,6 +47,33 @@ public class PassagerService extends AbstractFacade<Passager>{
     public List<Passager> findByEmail(String email){
         return getEntityManager().createQuery("select p from Passager p where p.personne.email ='"+email+"'")
                 .getResultList();
+    }
+    
+    public void creatPassagerByNotification(Notification notification){
+        PersonneService personneService = new PersonneService();
+        NotificationService notificationService = new NotificationService();
+        VoyageService voyageService =new VoyageService();
+        ConducteurService conducteurService = new ConducteurService();
+        Passager passager = new Passager() ;
+        
+        Notification ntfs = notificationService.find(notification.getId());
+        Personne personne = personneService.find(notification.getPersonne().getEmail());
+        Voyage voyage = voyageService.find(notification.getVoyage().getId());
+        Conducteur conducteur =conducteurService.findConducteurbyVoyage(voyage);
+        //-----------------modifier nbrPlaceOcuper-------------------
+        conducteur.setNbrPlaceOuccuper(conducteur.getNbrPlaceOuccuper()+1);
+        conducteurService.edit(conducteur);
+       // --------------------setVu---------------------------------------------
+        ntfs.setVu(2);
+        notificationService.edit(ntfs);
+      //  ---------------------------creation du passager-------------------------
+        passager.setPersonne(personne);
+        passager.setVoyage(voyage);
+        create(passager);
+        
+        
+        
+        
     }
 }
     

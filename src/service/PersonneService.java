@@ -6,6 +6,9 @@
 package service;
 
 import bean.Personne;
+import bean.Voyage;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -64,6 +67,23 @@ public class PersonneService extends AbstractFacade<Personne> {
             }
 
         }
+    }
+    
+    public List<Personne> getPersonneByVoyage(Voyage voyage)
+    {
+        List<Personne> personnes = new ArrayList();
+        PassagerService passagerService = new PassagerService();
+        ConducteurService conducteurService = new ConducteurService();
+        personnes= passagerService.getEntityManager()
+               .createQuery("select p.personne from Passager p where p.voyage.id = "+voyage.getId()+"")
+               .getResultList();
+        Personne personne = (Personne) conducteurService.getEntityManager()
+                            .createQuery("select c.personne from Conducteur c where c.voyage.id = "+voyage.getId()+"")
+                            .getSingleResult();
+        personnes.add(personne);
+        
+        
+        return personnes ;
     }
 
 }

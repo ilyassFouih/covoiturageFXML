@@ -54,5 +54,10 @@
             <Font name="Berlin Sans FB Demi Bold" size="27.0" />
          </font>
       </Label>
+      <Label fx:id="notLabel" layoutX="394.0" layoutY="359.0" prefHeight="34.0" prefWidth="35.0" style="-fx-background-radius: 50px;" textFill="#ee4242">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

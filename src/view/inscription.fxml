@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="781.0" style="-fx-background-color: #00838F;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.InscriptionController">
+
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="781.0" style="-fx-background-color: #00838F;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.InscriptionController">
    <children>
       <AnchorPane layoutX="129.0" layoutY="37.0" prefHeight="639.0" prefWidth="522.0" style="-fx-background-color: #CFD8DC;">
          <children>
@@ -73,7 +74,7 @@
                   <Font size="17.0" />
                </font>
             </JFXPasswordField>
-            <Label fx:id="msgEr" layoutX="158.0" layoutY="543.0" prefHeight="17.0" prefWidth="191.0" textFill="#f50f0f">
+            <Label fx:id="msgEr" layoutX="254.0" layoutY="497.0" prefHeight="17.0" prefWidth="97.0" textFill="#f50f0f">
                <font>
                   <Font size="10.0" />
                </font>

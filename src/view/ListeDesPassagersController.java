@@ -7,21 +7,29 @@ package view;
 
 import bean.Conducteur;
 import bean.Passager;
+import bean.Personne;
 import bean.Voyage;
 import helper.PassagerFxHelper;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+import service.ConducteurService;
+import service.NotificationService;
 import service.PassagerService;
 import util.Session;
 
@@ -37,14 +45,42 @@ public class ListeDesPassagersController implements Initializable {
      */
     @FXML
     private TableView<Passager> jtablePassager;
+    @FXML
+    private Label notLabel;
     PassagerFxHelper passagerFxHelper;
     PassagerService passagerService = new PassagerService();
-
+    ViewLuncherLoging viewLuncherLoging = new ViewLuncherLoging();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         Voyage voyage = (Voyage) Session.getAttribut("voyage selectione");
         passagerFxHelper = new PassagerFxHelper(jtablePassager, passagerService.getPassagerForVoyage(voyage));
+        
+         // ----------------------------------------notification-----------------------------------
+       NotificationService notificationService = new NotificationService();
+        ConducteurService conducteurService = new ConducteurService();
+        int rep =0;
+         rep = notificationService.nbrDeNotificationNonLu(((Personne) Session.getAttribut("utilisateur connecter ")));
+        if(rep!=0){
+            notLabel.setText(String.valueOf(rep));}
+           
+        //------------------------------------------notifier passager confirmation du trajet ------------------------  
+            List<Voyage> lesVoyages = notificationService
+                    .voyagesConfirmationTrajet(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail());
+            if(lesVoyages.size()!=0){
+                for (Voyage ligne : lesVoyages) {
+                    Conducteur conducteurNotifiant = conducteurService.findConducteurbyVoyage(ligne);
+                    Notifications notifications = Notifications.create()
+                 .title("confirmation du voyage")
+                 .text("le conducteur "+conducteurNotifiant.getPersonne().getNom()+" "+conducteurNotifiant.getPersonne().getNom()+" vous a accepter pour le voyage de la date "+ligne.getDateVoyage())
+                 .graphic(null)
+                 .hideAfter(Duration.seconds(10))
+                 .position(Pos.BOTTOM_RIGHT);
+                notifications.darkStyle();   
+                notifications.showConfirm();
+                    notificationService.edditerVuPourUnVoyage(voyage, ((Personne) Session.getAttribut("utilisateur connecter ")).getEmail());
+                }
+            }
     }
 
     @FXML
@@ -53,11 +89,7 @@ public class ListeDesPassagersController implements Initializable {
         Passager passager = passagerFxHelper.getSelected();
         Session.updateAttribute(passager.getPersonne(), "personne Selectionner");
         System.out.println(passager.getPersonne());
-        Parent root = FXMLLoader.load(getClass().getResource("DonnerAvis.fxml"));
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+       viewLuncherLoging.forWardNewTab(event, "DonnerAvis.fxml", this.getClass());
     }
 
     @FXML

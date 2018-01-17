@@ -40,6 +40,9 @@ public class Voyage implements Serializable {
     private List<CircuitVoyage> circuitVoyages;
     @OneToMany(mappedBy = "voyage")
     private List<Passager> passagers;
+    @OneToMany(mappedBy = "voyage")
+    private List<Notification> notifications;
+  
     
 
     public Voyage() {

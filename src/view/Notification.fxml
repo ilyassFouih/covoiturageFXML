@@ -2,12 +2,12 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="view.NotificationController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.NotificationController">
    <children>
       <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="562.0" prefWidth="281.0" style="-fx-background-color: #616161;">
          <children>
@@ -53,7 +53,7 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="278.0" layoutY="-2.0" prefHeight="76.0" prefWidth="478.0" style="-fx-background-color: #CFD8DC;">
+      <AnchorPane layoutX="278.0" layoutY="-2.0" prefHeight="76.0" prefWidth="534.0" style="-fx-background-color: #CFD8DC;">
          <children>
             <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="24.0" onAction="#deconexion" prefHeight="29.0" prefWidth="117.0" style="-fx-background-color: #9E9E9E; -fx-border-color: #FF5252;" text="deconexion" textFill="#d32f2f">
                <font>
@@ -70,5 +70,14 @@
             </Label>
          </children>
       </AnchorPane>
+      <TableView fx:id="noticationTable" layoutX="289.0" layoutY="131.0" onMouseClicked="#reserverUnCircuitMouseClicked" prefHeight="341.0" prefWidth="515.0">
+         <effect>
+            <DropShadow height="44.72" radius="20.377499999999998" width="38.79" />
+         </effect></TableView>
+      <Label layoutX="333.0" layoutY="80.0" text="la liste de notifications :" textFill="#5b5151">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -41,6 +41,9 @@ public class Personne implements Serializable {
     private List<Avis> aviss;
     @OneToMany(mappedBy = "personne")
     private List<Passager> passagers;
+    @OneToMany(mappedBy = "personne")
+    private List<Notification> notifications;
+  
 
     public Personne(String email, String nom, String prenom, String password, String tel) {
         this.email = email;

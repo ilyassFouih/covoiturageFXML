@@ -5,20 +5,30 @@
  */
 package view;
 
+import bean.Conducteur;
 import bean.Personne;
+import bean.Voyage;
+import com.jfoenix.controls.JFXProgressBar;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+import service.AvisService;
+import service.ConducteurService;
+import service.NotificationService;
 import util.Session;
 
 /**
@@ -31,11 +41,15 @@ public class ModifierProfileController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    ViewLuncherLoging viewLuncherLoging =new  ViewLuncherLoging();
         @FXML
     private ImageView image;
 
     @FXML
-    private Label nomPrenom;
+    private Label nom;
+    
+    @FXML
+    private Label prenom;
 
     @FXML
     private Label age;
@@ -53,16 +67,94 @@ public class ModifierProfileController implements Initializable {
     private Label tel;
 
     @FXML
-    private Label parfait;
+    private JFXProgressBar  parfait;
 
     @FXML
-    private Label tresBien;
+    private JFXProgressBar  tresBien;
 
     @FXML
-    private Label bien;
+    private JFXProgressBar  bien;
 
     @FXML
-    private Label aEviter;
+    private JFXProgressBar  aEviter;
+    
+     @FXML
+    private Label nbrParfait;
+
+    @FXML
+    private Label nbrTresBien;
+
+    @FXML
+    private Label nbrBien;
+
+    @FXML
+    private Label nbrAeviter;
+    @FXML
+    private Label notLabel;
+    
+    
+     @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        nom.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getNom());
+        prenom.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getPrenom());
+        email.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail()) ;
+        tel.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getTel()) ;
+        cin.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getCin()) ;
+        age.setText(String.valueOf(((Personne) Session.getAttribut("utilisateur connecter ")).getAge())) ;
+        if(((Personne) Session.getAttribut("utilisateur connecter ")).isFumeur())
+            fumeur.setText(" oui ");
+        else if(false==((Personne) Session.getAttribut("utilisateur connecter ")).isFumeur())
+            fumeur.setText(" non ");
+        else 
+            fumeur.setText("fumeur : *n'est pas definer* ");
+//        -------------------------------progresse Bar-------------------------------------------
+            AvisService avisService = new AvisService();
+            List<Integer> rep=avisService.listeAvisByPersonne(((Personne) Session.getAttribut("utilisateur connecter ")));
+            nbrParfait.setText(""+rep.get(0));
+            nbrTresBien.setText(""+rep.get(1));
+            nbrBien.setText(""+rep.get(2));
+            nbrAeviter.setText(""+rep.get(3));
+           
+            float res =avisService.calculeProgresseBar(((Personne) Session.getAttribut("utilisateur connecter ")), 4);
+            parfait.setProgress(res);
+            System.out.println(res);
+            res =avisService.calculeProgresseBar(((Personne) Session.getAttribut("utilisateur connecter ")), 3);
+            tresBien.setProgress(res);
+            System.out.println(res);
+            res =avisService.calculeProgresseBar(((Personne) Session.getAttribut("utilisateur connecter ")), 2);
+            bien.setProgress(res);
+            System.out.println(res);
+            res =avisService.calculeProgresseBar(((Personne) Session.getAttribut("utilisateur connecter ")), 1);
+            aEviter.setProgress(res);
+             System.out.println(res);
+               // ----------------------------------------notification-----------------------------------
+       NotificationService notificationService = new NotificationService();
+        ConducteurService conducteurService = new ConducteurService();
+        int resnotification =0;
+         resnotification = notificationService.nbrDeNotificationNonLu(((Personne) Session.getAttribut("utilisateur connecter ")));
+        if(resnotification!=0){
+            notLabel.setText(String.valueOf(resnotification));}
+           
+        //------------------------------------------notifier passager confirmation du trajet ------------------------  
+            List<Voyage> voyages = notificationService
+                    .voyagesConfirmationTrajet(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail());
+            if(voyages.size()!=0){
+                for (Voyage voyage : voyages) {
+                    Conducteur conducteur = conducteurService.findConducteurbyVoyage(voyage);
+                    Notifications notifications = Notifications.create()
+                 .title("confirmation du voyage")
+                 .text("le conducteur "+conducteur.getPersonne().getNom()+" "+conducteur.getPersonne().getNom()+" vous a accepter pour le voyage de la date "+voyage.getDateVoyage())
+                 .graphic(null)
+                 .hideAfter(Duration.seconds(10))
+                 .position(Pos.BOTTOM_RIGHT);
+                notifications.darkStyle();   
+                notifications.showConfirm();
+                    notificationService.edditerVuPourUnVoyage(voyage, ((Personne) Session.getAttribut("utilisateur connecter ")).getEmail());
+                }
+            }
+        
+    } 
     
 //    -------------------les methodes--------------------
 
@@ -86,13 +178,11 @@ public class ModifierProfileController implements Initializable {
     }
 
     @FXML
-    void edditerProfil(ActionEvent actionEvent)throws IOException {
+    void edditerProfil(ActionEvent event)throws IOException {
         
         Parent root = FXMLLoader.load(getClass().getResource("EditerProfile.fxml"));
-        Scene scene= new Scene(root);
-        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+         viewLuncherLoging.forWardNewTab(event, "EditerProfile.fxml", this.getClass());
+        
     }
 
     @FXML
@@ -131,31 +221,27 @@ public class ModifierProfileController implements Initializable {
         window.show();
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        nomPrenom.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getNom() + " "+((Personne) Session.getAttribut("utilisateur connecter ")).getPrenom() );
-        email.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getEmail()) ;
-        tel.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getTel()) ;
-        cin.setText(((Personne) Session.getAttribut("utilisateur connecter ")).getCin()) ;
-        age.setText(String.valueOf(((Personne) Session.getAttribut("utilisateur connecter ")).getAge())) ;
-        if(((Personne) Session.getAttribut("utilisateur connecter ")).isFumeur())
-            fumeur.setText("fumeur : oui ");
-        else if(false==((Personne) Session.getAttribut("utilisateur connecter ")).isFumeur())
-            fumeur.setText("fumeur : non ");
-        else 
-            fumeur.setText("fumeur : *n'est pas definer* ");
-        
-        
-    }   
-
-    public Label getaEviter() {
-        return aEviter;
+    
+    @FXML
+    void retour(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
-
-    public void setaEviter(Label aEviter) {
-        this.aEviter = aEviter;
+    
+      @FXML
+    void modifierProfile(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ModifierProfile.fxml"));
+        Scene scene= new Scene(root);
+        Stage window = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
+     
+
+ 
 
     public ImageView getImage() {
         return image;
@@ -165,13 +251,7 @@ public class ModifierProfileController implements Initializable {
         this.image = image;
     }
 
-    public Label getNomPrenom() {
-        return nomPrenom;
-    }
-
-    public void setNomPrenom(Label nomPrenom) {
-        this.nomPrenom = nomPrenom;
-    }
+   
 
     public Label getAge() {
         return age;
@@ -213,29 +293,7 @@ public class ModifierProfileController implements Initializable {
         this.tel = tel;
     }
 
-    public Label getParfait() {
-        return parfait;
-    }
 
-    public void setParfait(Label parfait) {
-        this.parfait = parfait;
-    }
-
-    public Label getTresBien() {
-        return tresBien;
-    }
-
-    public void setTresBien(Label tresBien) {
-        this.tresBien = tresBien;
-    }
-
-    public Label getBien() {
-        return bien;
-    }
-
-    public void setBien(Label bien) {
-        this.bien = bien;
-    }
     
     
     

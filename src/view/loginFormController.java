@@ -56,11 +56,11 @@ public class loginFormController implements Initializable {
         switch (res) {
             case -1:
                 errorEmail.setText("*l'email n'existe pas ");
-                emailScene.setStyle("-fx-background-color : red;");
+                emailScene.setStyle("-fx-background-color : #FF5252;");
                 break;
             case -2:
                 errorPass.setText("*password incorrecte ");
-                passwordScene.setStyle("-fx-background-color : red;");
+                passwordScene.setStyle("-fx-background-color : #FF5252;");
                 break;
             default:
 //                ---------ouvrire session---------------------------

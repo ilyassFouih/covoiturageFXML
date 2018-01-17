@@ -54,6 +54,11 @@
                         <Font size="15.0" />
                      </font>
                   </JFXButton>
+                  <Label fx:id="notLabel" layoutX="212.0" layoutY="401.0" prefHeight="28.0" prefWidth="29.0" style="-fx-background-radius: 50px;" textFill="#f26565">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="278.0" layoutY="-2.0" prefHeight="76.0" prefWidth="678.0" style="-fx-background-color: #CFD8DC;">
